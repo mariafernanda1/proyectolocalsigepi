@@ -1,0 +1,23 @@
+{% extends 'index_adm_prb.html' %}
+{% block titulo %} Listado de funciones por aplicativo  {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de aplicaciones no se ha logrado consultar.</p>
+{% endif %}
+<h3>Listado de funciones por aplicativo</h3>
+
+<form method="POST">
+    {{form.as_p}}
+
+    <div>
+        {% for rl_func_app in  object_list %}
+        <label> {{ rl_func_app.id }} </label>
+        <label> {{ rl_func_app.id_app }} </label>
+        <label> {{ rl_func_app.id_app.ls_func}} </label>
+            {% block modf_consl %}
+                <li><a href="{% url 'modificar_func_app'  rl_func_app.id  %}" >seleccionar</a></li><br>
+            {% endblock modf_consl  %}
+        {% endfor %}
+
+</form>
+{% endblock cuerpo %}

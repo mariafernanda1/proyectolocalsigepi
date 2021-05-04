@@ -1,0 +1,19 @@
+{% extends 'index_adm_prb.html' %}
+{% block titulo %} Listado de grupos {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de grupos no se ha logrado consultar.</p>
+{% endif %}
+<h3>Lista de Roles</h3>
+<form method="POST">
+    {{form.as_p}}
+    <div>
+        {% for usu_inf_apps in  roles %}
+        <label> {{ usu_inf_apps.id_usu }} </label>
+        <label> {{ usu_inf_apps.rol_sis}} </label><br>
+            {% block modf_consl %}
+            <li <a href="{url 'rol_sel'   usu_inf_apps.rol_sis }"></a>seleccionar</li>
+            {% endblock modf_consl  %}
+        {% endfor %}
+</form>
+{% endblock cuerpo %}

@@ -1,0 +1,25 @@
+{% block consulta %}
+{% if form.errors %}
+    <p>la consulta no se ha generado correctamente.</p>
+{% endif %}
+{% block titulo %} Consultas {% endblock titulo %}
+    <form method="GET" action="{% url 'reg_func_rol' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <select id="id_app_sel" name="id_app_sel" onchange="" >
+            <option disabled selected>Filtrar por app</option>
+            <option value="all">todas app</option>
+            <option disabled>────────────</option>
+            {% for app_mod in  object_list %}
+                <option value={{ app_mod.id_app }}>{{ app_mod.titulo }}</option>
+            {% endfor %}
+        </select>
+        <input id="filter" class="btn btn-primary" type="submit" value="Seleccionar" />
+
+
+        {% block modf_consl %}
+        {% endblock modf_consl  %}
+
+    </form>
+{% endblock consulta %}

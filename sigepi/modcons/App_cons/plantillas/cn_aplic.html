@@ -1,0 +1,29 @@
+''{% extends 'index_adm_prb.html' %}
+{% block titulo %} Listado de Aplicativos {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de aplicativos no se ha logrado consultar.</p>
+{% endif %}
+
+<form method="POST">
+    {{form.as_p}}
+
+    <div>
+        {% for app_mod in  object_list %}
+        <label> {{ app_mod.id_app }} </label>
+        <label> {{ app_mod.titulo}} </label>
+        <label> {{ app_mod.desc}} </label>
+        <label> {{ app_mod.url_doc}} </label>
+        <label> {{ app_mod.version }} </label>
+        <label> {{ app_mod.mod_prin}} </label>
+        <label> {{ app_mod.ver_mod}} </label>
+        <label> {{ app_mod.activo }} </label>
+        <label> {{ app_mod.instalada}} </label>
+        <label> {{ app_mod.visible}} </label><br>
+            {% block modf_consl %}
+
+            {% endblock modf_consl  %}
+        {% endfor %}
+
+</form>
+{% endblock cuerpo %}

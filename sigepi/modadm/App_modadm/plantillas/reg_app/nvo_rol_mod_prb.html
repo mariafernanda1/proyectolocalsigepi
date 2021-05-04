@@ -1,0 +1,14 @@
+{% extends 'index_adm_prb.html' %}
+{% block titulo %} Formulario de registro roles por Módulos {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>Los roles por Módulos  no se ha creado correctamente. Por favor, inténtalo de nuevo.</p>
+{% endif %}
+<h3>Registrar Nuevo roles por Módulos</h3>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="registrar">
+</form>
+{% endblock cuerpo %}

@@ -1,0 +1,29 @@
+{% load static %}
+{% block cabeza_lado %}
+{% endblock cabeza_lado%}
+
+{% block lado %}
+    <div class="">
+
+        {% if user.is_authenticated %}
+          <p> Bienvenido(a) {{ request.user.first_name }} !!!</p>
+            <p> Bienvenido(a) {{ request.user.id }} !!!</p>
+        <ul>
+            <li><a href="{% url 'consulta_usu_roles' %}" target="#cons_lado">Seleccionar rol</a></li>
+            <div id='cons_lado' class="">
+                {% block consulta  %}
+
+                {% endblock consulta %}
+            </div>
+        </ul>
+        {% else %}
+        <ul>
+            <li><a href="{% url 'registrop' %}" target="#cuerpo_ppal">Registrar Nuevo Usuario</a></li>
+            <li><a href="{% url 'ingresop' %}" target="#cuerpo_ppal">Ingresar</a></li>
+        </ul>
+        {% endif %}
+        <ul>
+            <li><a href="cerrar" target="#cuerpo_ppal">Cerrar</a></li>
+        </ul>
+    </div>
+{% endblock lado %}

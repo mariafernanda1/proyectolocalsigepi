@@ -1,0 +1,21 @@
+{% block consulta %}
+{% if form.errors %}
+    <p>la consulta no se ha generado correctamente.</p>
+{% endif %}
+{% block titulo %} Consultas {% endblock titulo %}
+    <form method="POST">
+        {% csrf_token %}
+
+        {% if milista %}
+            {% for rl_func_app in  milista %}
+
+                {{ rl_func_app.id }}
+                {{ rl_func_app.ls_func }}
+
+            {% endfor %}
+        {% endif %}
+        {% block modf_consl %}
+        {% endblock modf_consl  %}
+
+    </form>
+{% endblock consulta %}

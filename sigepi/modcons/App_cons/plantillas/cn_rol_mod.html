@@ -1,0 +1,22 @@
+''{% extends 'index_adm_prb.html' %}
+{% block titulo %} Listado de roles por Módulos {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de roles por Módulos no se ha logrado consultar.</p>
+{% endif %}
+
+<form method="POST">
+    {{form.as_p}}
+
+    <div>
+        {% for rl_mod_rol in  object_list %}
+        <label> {{ rl_mod_rol.id }} </label>
+        <label> {{ rl_mod_rol.id_mod }} </label>
+        <label> {{ rl_mod_rol.ls_rol}} </label>
+            {% block modf_consl %}
+
+            {% endblock modf_consl  %}
+        {% endfor %}
+
+</form>
+{% endblock cuerpo %}

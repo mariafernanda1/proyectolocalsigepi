@@ -1,0 +1,22 @@
+''{% extends 'index_adm_prb.html' %}
+{% block titulo %} Listado de roles por Aplicativos {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de roles por aplicativos no se ha logrado consultar.</p>
+{% endif %}
+
+<form method="POST">
+    {{form.as_p}}
+
+    <div>
+        {% for rl_func_app in  object_list %}
+        <label> {{ rl_func_app.id }} </label>
+        <label> {{ rl_func_app.id_app }} </label>
+        <label> {{ rl_func_app.id_app.ls_func}} </label>
+            {% block modf_consl %}
+
+            {% endblock modf_consl  %}
+        {% endfor %}
+
+</form>
+{% endblock cuerpo %}

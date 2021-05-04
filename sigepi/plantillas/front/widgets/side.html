@@ -1,0 +1,33 @@
+{% load static %}
+{% block lado %}
+  <head>
+    <link rel="stylesheet" href="{% static 'css/lado.css' %}">
+  </head>
+  <div id="wrapper" class="activo">
+    <div id="sidebar-wrapper">
+        <ul id="sidebar-nav">
+          <li id="sidebar-brand">
+            <a href="serv">Ingresar</a>
+          </li>
+          <li id="sidebar-brand" class="sidebar-brand">
+            <a href="serv">Registro</a>
+          </li>
+          <li id="sidebar-brand">
+            <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-pre>
+              <span class="caret"></span>
+            </a>
+          </li>
+          <li id="sidebar-brand">
+            <a href="Registro" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salir</a>
+          </li>
+          <div class="card">
+            <div class="card-header">Tablero de Control</div>
+            <div class="card-body">
+                <div class="alert alert-success" role="alert">
+                </div>
+            </div>
+          </div>
+        </ul>
+    </div>
+  </div>
+{% endblock %}

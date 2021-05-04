@@ -1,0 +1,30 @@
+{% extends 'index_adm_prb.html' %}
+{% block titulo %} Listado de funciones {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de funciones no se ha logrado consultar.</p>
+{% endif %}
+
+
+<form method="POST">
+    {{form.as_ul}}
+
+    <div>
+        {% for func_app in  object_list %}
+            <label>{{ func_app.id_func }}</label>
+            <label>{{ func_app.nom_func }}</label>
+            <label>{{ func_app.lib_func }}</label>
+            <label>{{ func_app.url_loc }}</label>
+            <label>{{ func_app.com_exc }}</label>
+            <label>{{ func_app.text }}</label>
+            <label>{{ func_app.context }}</label>
+            <label>{{ func_app.activa }}</label>
+            <label>{{ func_app.indice }}</label><br>
+
+            {% block modf_consl %}
+
+            {% endblock modf_consl  %}
+        {% endfor %}
+
+</form>
+{% endblock cuerpo %}

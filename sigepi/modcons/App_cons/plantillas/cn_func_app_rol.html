@@ -1,0 +1,23 @@
+''{% extends 'index_adm_prb.html' %}
+{% block titulo %} Listado de roles por funciones {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de roles por funciones no se ha logrado consultar.</p>
+{% endif %}
+
+<form method="POST">
+    {{form.as_p}}
+
+    <div>
+        {% for rl_func_rol in  object_list %}
+        <label> {{ rl_func_rol.id }} </label>
+        <label> {{ rl_func_rol.id_grup }} </label>
+        <label> {{ rl_func_rol.id_func}} </label>
+        <label> {{ rl_func_rol.reg_bd}} </label>
+            {% block modf_consl %}
+
+            {% endblock modf_consl  %}
+        {% endfor %}
+
+</form>
+{% endblock cuerpo %}
