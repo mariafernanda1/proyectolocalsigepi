@@ -66,7 +66,3 @@ class frm_func_grupo(forms.ModelForm):
                 attrs={'placeholder':'seleccionar...'},
             )
         }
-
-
-class appForm(forms.Form):
-    app = forms.ModelChoiceField(queryset=app_mod.objects.all().order_by('titulo'))
