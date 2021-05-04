@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block titulo %} listado de usuarios {% endblock titulo %}</title>
+  </head>
+  <body>
+    {% block cuerpo %}
+    <h1> listado usuarios</h1>
+    <table border="2">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>nick</th>
+            <th>pass</th>
+            <th>rol</th>
+            <th>fecha</th>
+            <th>activo</th>
+          </tr>
+        </thead>
+      <tbody>
+        {% for usu in  object_list %}
+        <tr>
+          <td>{{ usu.id_usu }}</td>
+          <td>{{ usu.usuario }}</td>
+          <td>{{ usu.passusu }}</td>
+          <td>{{ usu.id_rol_sis }}</td>
+          <td>{{ usu.fch_regi }}</td>
+          <td>{{ usu.activo }}</td>
+          <td><a href="{% url 'editarusu' usu.id_usu %}"> Editar </a> <a href="{% url 'eliminarusu' usu.id_usu %} "> Eliminar </a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+      {% endblock cuerpo %}
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block titulo %} listado de Roles {% endblock titulo %}</title>
+  </head>
+  <body>
+    {% block cuerpo %}
+    <h1> listado Roles</h1>
+    <table border="2">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>titulo</th>
+            <th>descripcion</th>
+            <th>opcion</th>
+          </tr>
+        </thead>
+      <tbody>
+        {% for rol in object_list %}
+        <tr>
+          <td>{{ rol.id_rol }}</td>
+          <td>{{ rol.etq_rol }}</td>
+          <td>{{ rol.desc }}</td>
+          <td><a href="{% url 'editarRol' rol.id_rol %}"> Editar </a>  <a href="{% url 'eliminarrol' rol.id_rol %}">Eliminar </a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+      {% endblock cuerpo %}
+  </body>
+</html>

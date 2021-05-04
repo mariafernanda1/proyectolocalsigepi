@@ -1,0 +1,41 @@
+{% load static %}
+<html lang="es" dir="ltr">
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    {% block cabeza %}
+    {% endblock cabeza%}
+    <title>{% block titulo %}{% endblock %}</title>
+</head>
+<header>
+    {% block encabezado %}
+    {% endblock encabezado%}
+</header>
+
+<body>
+    <div class="sidebar" id="lado_ppal">
+        {% block lado %}
+        {% endblock lado%}
+    </div>
+    <div id='cuerpo_ppal'>
+        {% block cuerpo %}
+        <div class="article" id="art_ppal">
+            {% block articulo %}
+            {% endblock articulo %}
+        </div>
+        {% endblock cuerpo %}
+    </div>
+    <script language="JavaScript" type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script language="JavaScript" type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% block script%}
+    {% endblock script%}
+</body>
+<footer>
+    <div class="footer" id="pie_ppal">
+        {% block pie %}
+        {% endblock pie%}
+    </div>
+</footer>
+
+</html>
