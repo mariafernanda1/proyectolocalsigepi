@@ -1,6 +1,9 @@
-{% extends 'moduloAdm/usuarios/infoacad.html' %}
-{% block titulo %} Formulario de usuarios {% endblock titulo %}
+{% extends 'index_usu_prb.html' %}
+{% block titulo %} Formulario de registro informacion academica {% endblock titulo %}
 {% block cuerpo %}
+{% if form.errors %}
+    <p>Formulario de registro informacion academica  no se ha creado correctamente. Por favor, inténtalo de nuevo.</p>
+{% endif %}
 <form class="" action="" method="post">
   {% csrf_token %}
   {{ form.as_p}}

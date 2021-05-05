@@ -36,9 +36,6 @@ class backend_prb():
         return render(solicitud,'index_adm_prb.html')
 
 def funcionrelaciones(solicitud):
-    #milista = app_mod.objects.all()
-    #milista = rl_func_app.objects.filter(id_app__pk=1)
-#    milista = rl_func_app.objects.filter(id_app__titulo='App_modadm')
     milista = rl_func_app.objects.filter(id_app__titulo__icontains='App_modadm')
     print(milista)
     contexto ={
@@ -47,15 +44,19 @@ def funcionrelaciones(solicitud):
     return render(solicitud,'cnsl_generic.html',contexto)
 
 
+class vts_listarapp(ListView):
+    model = app_mod
+    form_class = app_modForm
+    template_name = 'nvo_func_grup.html'
+    success_url = reverse_lazy('nvo_func_grup.html')
+    success_message = 'listado cargado correctamente'
+
+
 
 class crearrolfunc():
 
     def crearfuncrol(self, solicitud):
         resultado = solicitud.GET.get('id_app_sel',None)
-    #    contexto1 = rl_func_app.filtroporidapp(self,resultado)
-    #    contexto2 = rol.flt_x_idpp(self, resultado)
-    #    print(contexto1)
-    #    print(contexto2)
         if solicitud.method == 'POST':
             form = funciongrupForm(solicitud.POST)
             #print(form)
@@ -170,14 +171,6 @@ class sesion():
         print (user.id)
         return render(sesion)
         pass
-
-
-class vts_listarapp(ListView):
-    model = app_mod
-    form_class = app_modForm
-    template_name = 'nvo_func_grup.html'
-    success_url = reverse_lazy('nvo_func_grup.html')
-    success_message = 'listado cargado correctamente'
 
 
 

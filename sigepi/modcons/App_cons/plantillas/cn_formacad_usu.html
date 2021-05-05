@@ -1,0 +1,29 @@
+{% extends 'index_usu_prb.html' %}
+{% block titulo %} Listado  de formacion academica de usuario {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de formacion academica de usuario no se ha logrado consultar.</p>
+{% endif %}
+<h3>Lista de formacion academicade usuario </h3>
+<form method="POST">
+    {{form.as_p}}
+    <div>
+        {% for form_acad in  formacion %}
+        <label> {{ form_acad.instit }} </label>
+        <label> {{ form_acad.tipo_form}} </label>
+        <label> {{ form_acad.fch_ini}} </label>
+        <label> {{ form_acad.fch_fin }} </label>
+        <label> {{ form_acad.certif}} </label>
+        <label> {{ form_acad.nal }} </label>
+        <label> {{ form_acad.ciudad }} </label>
+        <label> {{ form_acad.mod}} </label>
+        <label> {{ form_acad.tit }} </label>
+        <label> {{ form_acad.menc}} </label>
+        <label> {{ form_acad.token}} </label>
+
+            {% block modf_consl %}
+        <li><a href="{% url 'editarforaca'  form_acad.id_fa  %}" >seleccionar</a></li><br>
+            {% endblock modf_consl  %}
+        {% endfor %}
+</form>
+{% endblock cuerpo %}

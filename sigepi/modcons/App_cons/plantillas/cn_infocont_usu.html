@@ -1,0 +1,26 @@
+{% extends 'index_usu_prb.html' %}
+{% block titulo %} Listado  de Informacion de contacto de usuario {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de Informacion de contacto de usaurio no se ha logrado consultar.</p>
+{% endif %}
+<h3>Lista de Informacion de contacto de usaurio</h3>
+<form method="POST">
+    {{form.as_p}}
+    <div>
+        {% for usu_inf_contac in  contacto %}
+        <label> {{ usu_inf_contac.ind_nal }} </label><br>
+        <label> {{ usu_inf_contac.cel}} </label><br>
+        <label> {{ usu_inf_contac.wa }} </label><br>
+        <label> {{ usu_inf_contac.email}} </label><br>
+        <label> {{ usu_inf_contac.cod_post }} </label><br>
+        <label> {{ usu_inf_contac.ls_ha}} </label><br>
+        <label> {{ usu_inf_contac.web }} </label><br>
+        <label> {{ usu_inf_contac.dir_offi}} </label><br>
+
+            {% block modf_consl %}
+        <li><a href="{% url 'editarinf'  usu_inf_contac.id  %}" >seleccionar</a></li><br>
+            {% endblock modf_consl  %}
+        {% endfor %}
+</form>
+{% endblock cuerpo %}

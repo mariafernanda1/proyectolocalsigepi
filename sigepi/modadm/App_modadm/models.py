@@ -15,7 +15,6 @@ ROL_APP_MODADM = [
     (4, 'Usuario Sigepi', 'rol_usu_sigepi'),
     ]
 
-
 #Tipo de rol dentro de la plataforma
 TIPO_ROL = [
     (0,'Sistema'),
@@ -311,7 +310,7 @@ class rl_func_rol(models.Model): #Listado de funciones y roles que estan ligados
         verbose_name_plural = 'rl_func_rol'
 
     def __str__(self):
-        return '{}'.format(self.id_func)
+        return '{}'.format(self.nom_func)
 
 
 class rl_func_app(models.Model): #Listado de funciones propias de la aplicacion, objetos de la clase func_app().

@@ -10,7 +10,6 @@ ROL_APP_USU = [
     (2, 'Invitado', 'rol_invusu')
     ]
 
-
 #Tipo de rol dentro de la plataforma
 TIPO_ROL = [
     (0,'Sistema'),
@@ -184,7 +183,7 @@ HORARIO = [
     ]
 
 class usu_inf_apps(models.Model):
-    
+
     id = models.AutoField(primary_key = True)
     id_usu = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null= True, blank=True) #id único de Usuario de sistema
     ls_roles =[[0,0]] #Listado de roles en aplicaciones y módulos autorizados por administradores de paltaforma
@@ -241,6 +240,18 @@ class usu_inf_pers(models.Model):
         verbose_name = 'usu_inf_pers'
         verbose_name_plural = 'usu_inf_perss'
 
+    def save(self,force_insert=False, force_update=False, using=None, update_fields=None):
+        user = get_current_user()
+        if user is not None:
+            if not self.pk:
+                self.id_usu = user
+            else:
+                self.id_usu = user
+            super(form_acad, self).save()
+
+    def __str__(self):
+        return '{}'.format(self.id_usu)
+
 class usu_inf_contac(models.Model):
 
     id = models.AutoField(primary_key = True)
@@ -257,6 +268,18 @@ class usu_inf_contac(models.Model):
     class Meta:
         verbose_name = 'usu_inf_contac'
         verbose_name_plural = 'usu_inf_contacs'
+
+    def __str__(self):
+        return '{}'.format(self.id_usu)
+
+    def save(self,force_insert=False, force_update=False, using=None, update_fields=None):
+        user = get_current_user()
+        if user is not None:
+            if not self.pk:
+                self.id_usu = user
+            else:
+                self.id_usu = user
+            super(usu_inf_contac, self).save()
 
 class red_soc(models.Model):
 
@@ -286,21 +309,33 @@ class form_acad(models.Model):
 
     id_fa =  models.AutoField(primary_key = True) #Id de formación académica
     id_usu = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null= True, blank=True)  # identificador de usuario
-    instit = models.CharField('Nombre de la institucion ', max_length=25, null=False, blank = False) # Nombre de la institucion académica donde curso la formación
-    tipo_form =  models.IntegerField(choices = TIPO_FORM_CO, default = 0, null=False, blank = False) #tipo de formación ver diccionario TIPO_FORM
+    instit = models.CharField('Nombre de la institucion ', max_length=25, null=False, blank = True) # Nombre de la institucion académica donde curso la formación
+    tipo_form =  models.IntegerField(choices = TIPO_FORM_CO, default = 0, null=False, blank = True) #tipo de formación ver diccionario TIPO_FORM
     fch_ini = models.DateField('fecha de Inicio', auto_now = False)
     fch_fin = models.DateField('fecha de Fin', auto_now = False)
-    certif = models.BooleanField('Posees Certificado', default=False)
-    nal = models.CharField('Pais ', max_length=20, null=False, blank = False) #país
-    ciudad = models.CharField('Ciudad ', max_length=20, null=False, blank = False)
-    mod =  models.IntegerField(choices = MODALIDAD, default = 0, null=False, blank = False) # modalidad
-    tit = models.CharField('Titulo obtenido ', max_length=20, null=False, blank = False) # Título obtenido
-    menc =  models.CharField('Mensión ', max_length=20, null=False, blank = False)  # Mensión de honor
-    token = models.CharField('token de validación ', max_length=20, null=False, blank = False)  #Token de validación electrónica de certificación de la formación
+    certif = models.BooleanField('Posees Certificado', default=True)
+    nal = models.CharField('Pais ', max_length=20, null=True, blank = True) #país
+    ciudad = models.CharField('Ciudad ', max_length=20, null=True, blank = True)
+    mod =  models.IntegerField(choices = MODALIDAD, default = 0, null=True, blank = True) # modalidad
+    tit = models.CharField('Titulo obtenido ', max_length=20, null=True, blank = True) # Título obtenido
+    menc =  models.CharField('Mensión ', max_length=20, null=True, blank = True)  # Mensión de honor
+    token = models.CharField('token de validación ', max_length=20, null=True, blank = True)  #Token de validación electrónica de certificación de la formación
 
     class Meta:
         verbose_name = 'form_acad'
         verbose_name_plural = 'form_acads'
+
+    def __str__(self):
+        return '{}'.format(self.id_usu)
+
+    def save(self,force_insert=False, force_update=False, using=None, update_fields=None):
+        user = get_current_user()
+        if user is not None:
+            if not self.pk:
+                self.id_usu = user
+            else:
+                self.id_usu = user
+            super(form_acad, self).save()
 
 class usu_inf_acad(models.Model):
 #ESTA NO ME PARECE YA

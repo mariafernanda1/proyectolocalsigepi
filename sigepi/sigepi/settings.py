@@ -98,6 +98,7 @@ TEMPLATES = [
             "modadm/App_modadm/plantillas/reg_app",
             "modadm/App_modadm/plantillas/backend",
             "modadm/App_regusu/plantillas",
+            "modadm/App_regusu/plantillas/registro_usuario",
             "modadm/App_regusui/plantillas",
             "modadm/App_regusugr/plantillas",
             "modcons/App_cons/plantillas",

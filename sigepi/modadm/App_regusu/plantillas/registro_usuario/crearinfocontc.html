@@ -1,6 +1,9 @@
-{% extends 'moduloAdm/usuarios/infocontacto.html' %}
-{% block titulo %} Formulario de usuarios {% endblock titulo %}
+{% extends 'index_usu_prb.html' %}
+{% block titulo %} Formulario de registro de infromacion de contacto {% endblock titulo %}
 {% block cuerpo %}
+{% if form.errors %}
+    <p>Formulario de registro de infromacion de contacto no se ha creado correctamente. Por favor, inténtalo de nuevo.</p>
+{% endif %}
 <form class="" action="" method="post">
   {% csrf_token %}
   {{ form.as_p}}

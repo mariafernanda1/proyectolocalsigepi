@@ -1,8 +1,6 @@
-{% block consulta %}
-{% if form.errors %}
-    <p>la consulta no se ha generado correctamente.</p>
-{% endif %}
-{% block titulo %} Consultas {% endblock titulo %}
+{% extends 'index_adm_prb.html' %}
+{% block titulo %} Formulario de modificacion funciones {% endblock titulo %}
+{% block cuerpo %}
     <form method="GET" action="{% url 'reg_func_rol' %}">
         {% csrf_token %}
         {{ form.as_p }}
@@ -22,4 +20,4 @@
         {% endblock modf_consl  %}
 
     </form>
-{% endblock consulta %}
+{% endblock cuerpo %}

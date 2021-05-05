@@ -1,0 +1,51 @@
+{% load static %}
+{% block cabeza_lado %}
+{% endblock cabeza_lado%}
+
+{% block lado %}
+    <div class="">
+
+        {% if user.is_authenticated %}
+        <p> Bienvenido(a) {{ request.user.first_name }} !!!</p>
+        <p> Bienvenido(a) {{  request.session.session_key }} !!!</p>
+        <p> mi value es : <b>{{resultado}}</b></p>
+
+            <ul>
+
+                <li><a href="{% url 'prueba_rol' request.user.id %}" target="#cuerpo_ppal"> usuario</li>
+                    <ul>
+                        <li><a href="{% url 'infocont' %}" target="#cuerpo_ppal">crear inf contacto usuario</li>
+                        <li><a href="{% url 'infocontc_usu' request.user.id %}" target="#cuerpo_ppal">lista su inf contacto usuario</li>
+                        <li><a href="{% url 'reg_formacad' %}" target="#cuerpo_ppal">crear inf formacion academica usuario</li>
+                        <li><a href="{% url 'listformaca_usu' request.user.id %}" target="#cuerpo_ppal">lista su inf formaciona academica usuario</li>
+                        <li><a href="{% url 'reg_infoperusu' %}" target="#cuerpo_ppal">crear inf personal usuario</li>
+                        <li><a href="{% url 'listformaca_usu' request.user.id %}" target="#cuerpo_ppal">lista su inf contacto usuario</li>
+                    </ul>
+                <li><a href="" target="#cuerpo_ppal">administrar Usuarios</a></li>
+                    <ul>
+                        <li><a href="{% url 'consulta_usuarios' %}" target="#cuerpo_ppal">consultar usuarios</li>
+                        <li><a href="{% url 'crea_usuprb' %}" target="#cuerpo_ppal">registrar usuarios</li>
+                        <li><a href="{% url 'ls_mod_usu' %}" target="#cuerpo_ppal">Modificar usuarios</li>
+                    </ul>
+                <li><a href="" target="#cuerpo_ppal">administrar Grupos</a></li>
+                <ul>
+                    <li><a href="{% url 'cons_usugr' %}" target="#cuerpo_ppal">Consultar grupos</li>
+                    <li><a href="{% url 'crear_usugr' %}" target="#cuerpo_ppal">registrar grupos</li>
+                    <li><a href="{% url 'ls_mod_usugr' %}" target="#cuerpo_ppal">Modificar grupos</li>
+                </ul>
+                <li><a href="" target="#cuerpo_ppal">administrar Instituciones</a></li>
+                <ul>
+                    <li><a href="{% url 'cons_usui' %}" target="#cuerpo_ppal">Consultar Institucion</li>
+                    <li><a href="{% url 'crea_usuiprb' %}" target="#cuerpo_ppal">registrar Institucion</li>
+                    <li><a href="{% url 'consu_usui_mod' %} " target="#cuerpo_ppal">Modificar Intitucion</li>
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="{% url 'cerrar_adm_prb' %}" target="#cuerpo_ppal">Cerrar</a></li>
+            </ul>
+        {% else %}
+            <p> No te has logeado.. </p>
+            <li><a href="{% url 'ingresop' %}" target="#cuerpo_ppal">Ingresar</a></li>
+        {% endif %}
+    </div>
+{% endblock lado %}

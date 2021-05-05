@@ -14,6 +14,24 @@ urlpatterns = [
     #crear usuario del modulo adm
     path('creausuprb/',vts_reg_usu_su.as_view(), name = 'crea_usuprb'),
 
+#ingreso de login para modulo usuario prueba
+    path('index_usu', backend().modusu, name="index_usu"),
+    path('ingreso_usu_prb', ingreso().vst_ingreso, name="ingreso_usu_prb"),
+    path('ingreso_usu_prb', ingreso().vst_cerrar, name="cerrar_usu_prb"),
+
+#registro de usuario contacto
+    path('infocont/',infousucontCreate.as_view(), name = 'infocont'),
+    path('infocontc_usu/<int:id_usu>', listar_inf_cont().inf_cont, name = 'infocontc_usu'),
+    path('editarinf/<int:pk>/',infousucontUpdate.as_view(), name='editarinf'),
+
+#registro de usuario formacion academica
+    path('infoacad/',infoacadusuRegis.as_view(), name = 'reg_formacad'),
+    path('form_acad_usu/<int:id_usu>', listar_formacad_cont().form_acad, name = 'listformaca_usu'),
+    path('editarformacad/<int:pk>/',formacad_usuModif.as_view(), name='editarforaca'),
+
+#registro de informacion personal
+    path('infopersusu/',infopers_usuRegis.as_view(), name = 'reg_infoperusu'),
+
 
     path('infopers/',infoperslList.as_view(), name = 'infopers'),
     path('crearinf/',infopersCreate.as_view(), name = 'crearinf'),
