@@ -1,0 +1,24 @@
+{% extends 'index_usu_prb.html' %}
+{% block titulo %} Listado empelos de usuario {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de empleos usuario no se ha logrado consultar.</p>
+{% endif %}
+<h3>Lista de empleos usuario </h3>
+<form method="POST">
+    {{form.as_p}}
+    <div>
+        {% for red_soc in  red_social %}
+        <label> {{ red_soc.nombre_red }} </label>
+        <label> {{ red_soc.usuario}} </label>
+        <label> {{ red_soc.url}} </label>
+        <label> {{ red_soc.uso }} </label>
+        <label> {{ red_soc.pub}} </label>
+
+            {% block modf_consl %}
+        <li><a href="{% url 'editaredsocial' red_soc.id_red %}" >Editar</a></li><br>
+        <li><a href="{% url 'borrarrecsocail' red_soc.id_red %}" >Eliminar</a></li><br>
+            {% endblock modf_consl  %}
+        {% endfor %}
+</form>
+{% endblock cuerpo %}

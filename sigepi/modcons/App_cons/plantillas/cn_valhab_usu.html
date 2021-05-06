@@ -1,0 +1,23 @@
+{% extends 'index_usu_prb.html' %}
+{% block titulo %} Listado habilidades de usuario {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de chabilidades usuario no se ha logrado consultar.</p>
+{% endif %}
+<h3>Lista de habilidades usuario </h3>
+<form method="POST">
+    {{form.as_p}}
+    <div>
+        {% for valid_hab in  vali_habil %}
+        <label> {{ valid_hab.id_hab }} </label>
+        <label> {{ valid_hab.id_usu_val}} </label>
+        <label> {{ valid_hab.id_esc }} </label>
+        <label> {{ valid_hab.val }} </label>
+
+            {% block modf_consl %}
+        <li><a href="{% url 'editarvalhab' valid_hab.id %}" >Editar</a></li><br>
+        <li><a href="{% url 'borrarvalhab' valid_hab.id %}" >Eliminar</a></li><br>
+            {% endblock modf_consl  %}
+        {% endfor %}
+</form>
+{% endblock cuerpo %}

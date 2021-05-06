@@ -1,0 +1,21 @@
+{% extends 'index_usu_prb.html' %}
+{% block titulo %} Listado habilidades de usuario {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de habilidades usuario no se ha logrado consultar.</p>
+{% endif %}
+<h3>Lista de habilidades usuario </h3>
+<form method="POST">
+    {{form.as_p}}
+    <div>
+        {% for rl_usu_inf_hab in  habilidades %}
+        <label> {{  rl_usu_inf_hab.id_hab }} </label>
+        <label> {{ rl_usu_inf_hab.descripcion }} </label>
+
+            {% block modf_consl %}
+        <li><a href="{% url 'editarinfhab' rl_usu_inf_hab.id %}" >Editar</a></li><br>
+        <li><a href="{% url 'borrarinfhab' rl_usu_inf_hab.id %}" >Eliminar</a></li><br>
+            {% endblock modf_consl  %}
+        {% endfor %}
+</form>
+{% endblock cuerpo %}

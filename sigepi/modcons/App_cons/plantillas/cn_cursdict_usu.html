@@ -1,0 +1,32 @@
+{% extends 'index_usu_prb.html' %}
+{% block titulo %} Listado cursos dictados de usuario {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de cursos dictados usuario no se ha logrado consultar.</p>
+{% endif %}
+<h3>Lista de cursos dictados usuario </h3>
+<form method="POST">
+    {{form.as_p}}
+    <div>
+        {% for curs_dict in  cursos %}
+        <label> {{  curs_dict.instit }} </label>
+        <label> {{ curs_dict.tipo_form }} </label>
+        <label> {{ curs_dict.fch_ini }} </label>
+        <label> {{ curs_dict.fch_fin }} </label>
+        <label> {{ curs_dict.certif  }} </label>
+        <label> {{ curs_dict.nal }} </label>
+        <label> {{ curs_dict.ciudad }} </label>
+        <label> {{ curs_dict.mod  }} </label>
+        <label> {{ curs_dict.num_est }} </label>
+        <label> {{ curs_dict.dur }} </label>
+        <label> {{ curs_dict.nom_curs }} </label>
+        <label> {{ curs_dict.mun_ciclos }} </label>
+        <label> {{ curs_dict.url_prog  }} </label>
+
+            {% block modf_consl %}
+        <li><a href="{% url 'editacursodict' curs_dict.id_cd %}" >Editar</a></li><br>
+        <li><a href="{% url 'borrarcursodict' curs_dict.id_cd %}" >Eliminar</a></li><br>
+            {% endblock modf_consl  %}
+        {% endfor %}
+</form>
+{% endblock cuerpo %}

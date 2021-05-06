@@ -16,28 +16,30 @@
                     <ul>
                         <li><a href="{% url 'infocont' %}" target="#cuerpo_ppal">crear inf contacto usuario</li>
                         <li><a href="{% url 'infocontc_usu' request.user.id %}" target="#cuerpo_ppal">lista su inf contacto usuario</li>
-                        <li><a href="{% url 'reg_formacad' %}" target="#cuerpo_ppal">crear inf formacion academica usuario</li>
-                        <li><a href="{% url 'listformaca_usu' request.user.id %}" target="#cuerpo_ppal">lista su inf formaciona academica usuario</li>
                         <li><a href="{% url 'reg_infoperusu' %}" target="#cuerpo_ppal">crear inf personal usuario</li>
-                        <li><a href="{% url 'listformaca_usu' request.user.id %}" target="#cuerpo_ppal">lista su inf contacto usuario</li>
+                        <li><a href="{% url 'listusuinfpers_usu' request.user.id %}" target="#cuerpo_ppal">lista su inf contacto usuario</li>
                     </ul>
-                <li><a href="" target="#cuerpo_ppal">administrar Usuarios</a></li>
+                <li><a href="" target="#cuerpo_ppal">Empleos Usuarios</a></li>
                     <ul>
-                        <li><a href="{% url 'consulta_usuarios' %}" target="#cuerpo_ppal">consultar usuarios</li>
-                        <li><a href="{% url 'crea_usuprb' %}" target="#cuerpo_ppal">registrar usuarios</li>
-                        <li><a href="{% url 'ls_mod_usu' %}" target="#cuerpo_ppal">Modificar usuarios</li>
+                        <li><a href="{% url 'listempleo_usu'  request.user.id %}" target="#cuerpo_ppal">consultar empleos</li>
+                        <li><a href="{% url 'reg_empleousu' %}" target="#cuerpo_ppal">registrar empleos</li>
+                        <li><a href="{% url 'listinfhab_usu'  request.user.id %}" target="#cuerpo_ppal">consultar Habilidades</li>
+                        <li><a href="{% url 'reg_infhabusu' %}" target="#cuerpo_ppal">registrar Habilidades</li>
+                        <li><a href="{% url 'listinfval_usu'  request.user.id %}" target="#cuerpo_ppal">consultar Habilidades validadas</li>
+                        <li><a href="{% url 'reg_valhabusu' %}" target="#cuerpo_ppal">registrar Habilidades validadas</li>
+
                     </ul>
-                <li><a href="" target="#cuerpo_ppal">administrar Grupos</a></li>
+                <li><a href="" target="#cuerpo_ppal"> Informaion academica</a></li>
                 <ul>
-                    <li><a href="{% url 'cons_usugr' %}" target="#cuerpo_ppal">Consultar grupos</li>
-                    <li><a href="{% url 'crear_usugr' %}" target="#cuerpo_ppal">registrar grupos</li>
-                    <li><a href="{% url 'ls_mod_usugr' %}" target="#cuerpo_ppal">Modificar grupos</li>
+                    <li><a href="{% url 'reg_formacad' %}" target="#cuerpo_ppal">crear inf formacion academica usuario</li>
+                    <li><a href="{% url 'listformaca_usu' request.user.id %}" target="#cuerpo_ppal">lista su inf formaciona academica usuario</li>
+                    <li><a href="{% url 'reg_cursdictusu' %}" target="#cuerpo_ppal">crear cursos dictados usuario</li>
+                    <li><a href="{% url 'listcursodict_usu' request.user.id  %}" target="#cuerpo_ppal">lista cursos usuario</li>
                 </ul>
-                <li><a href="" target="#cuerpo_ppal">administrar Instituciones</a></li>
+                <li><a href="" target="#cuerpo_ppal">Redes Sociales</a></li>
                 <ul>
-                    <li><a href="{% url 'cons_usui' %}" target="#cuerpo_ppal">Consultar Institucion</li>
-                    <li><a href="{% url 'crea_usuiprb' %}" target="#cuerpo_ppal">registrar Institucion</li>
-                    <li><a href="{% url 'consu_usui_mod' %} " target="#cuerpo_ppal">Modificar Intitucion</li>
+                    <li><a href="{% url 'listredsoci_usu' request.user.id  %}" target="#cuerpo_ppal">Consultar Redes Sociales</li>
+                    <li><a href="{% url 'reg_redsocialusu' %}" target="#cuerpo_ppal">registrar Red social</li>
                 </ul>
             </ul>
             <ul>

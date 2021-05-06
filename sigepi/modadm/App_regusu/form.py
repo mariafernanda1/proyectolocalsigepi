@@ -74,7 +74,7 @@ class frm_reg_usu_cont(forms.ModelForm):
         ]
 
         labels = {
-            'ind_nal' : 'Nacionalidad',
+            'ind_nal' : 'Indicativo telefónico de país',
             'cel': 'Numero de celular',
             'wa': 'WhatsApp',
             'email': 'Correo',
@@ -114,4 +114,130 @@ class frm_reg_usu_acad(forms.ModelForm):
             'tit' : 'Titulo ',
             'menc' : 'Mencion ',
             'token' : 'Token ',
+        }
+
+class frm_reg_usu_empleo(forms.ModelForm):
+    #clase para la creación de un formulario de registro de información personal de usuario SIGEPI.
+    class Meta:
+        model =  empleos
+        fields = [
+            'instit',
+            'nom_cargo',
+            'fch_ini',
+            'fch_fin',
+            'certif',
+            'nal',
+            'ciudad',
+            'tipo_contr',
+            'tit',
+            'menc',
+            'token',
+            'ret',
+        ]
+
+        labels = {
+            'instit' : 'Institucion ',
+            'nom_cargo': 'NOmbre del cargo ',
+            'fch_ini': 'Fecha de Inicio ',
+            'fch_fin': 'Fecha de Fin ',
+            'certif' : 'Certificado ',
+            'nal' : 'Nacionalidad ',
+            'ciudad' : 'Cuidad ',
+            'tipo_contr':'Tipo de contrato ',
+            'tit' : 'Titulo ',
+            'menc' : 'Mencion ',
+            'token' : 'Token ',
+            'ret' : 'Retiro '
+        }
+
+class frm_reg_usu_redsocial(forms.ModelForm):
+    #clase para la creación de un formulario de registro de información personal de usuario SIGEPI.
+    class Meta:
+        #Metadatos de la clase
+        model =  red_soc
+        fields = [
+            'nombre_red',
+            'usuario',
+            'url',
+            'uso',
+            'pub'
+        ]
+
+        labels = {
+            'nombre_red' : 'Nombre de la red social',
+            'usuario': 'Nick',
+            'url': 'Url',
+            'uso': 'Frecuencia de uso',
+            'pub' : 'Tiene acceso público la información de la red',
+        }
+
+class frm_reg_usu_cursdict(forms.ModelForm):
+    #clase para la creación de un formulario de registro de información personal de usuario SIGEPI.
+    class Meta:
+        model =  curs_dict
+        fields = [
+            'instit',
+            'tipo_form',
+            'fch_ini',
+            'fch_fin',
+            'certif',
+            'nal',
+            'ciudad',
+            'mod',
+            'num_est',
+            'dur',
+            'nom_curs',
+            'mun_ciclos',
+            'url_prog',
+        ]
+
+        labels = {
+            'instit' : 'Institucion ',
+            'tipo_form': 'Tipo de Formacion ',
+            'fch_ini': 'Fecha de Inicio ',
+            'fch_fin': 'Fecha de Fin ',
+            'certif' : 'Posees Certificado ',
+            'nal' : 'Pais ',
+            'ciudad' : 'Cuidad ',
+            'mod':'Modalidad ',
+            'num_est' : 'Cantidad de estudiantes ',
+            'dur' : 'Número total de horas académicas del curso ',
+            'nom_curs' : 'Nombre del curso ',
+            'mun_ciclos' : 'cuántas veces se dictó el curso ',
+            'url_prog' : 'Url del documento o sitio web'
+        }
+
+class frm_reg_usu_inf_hab(forms.ModelForm):
+    #clase para la creación de un formulario de registro de información personal de usuario SIGEPI.
+    class Meta:
+        #Metadatos de la clase
+        model =  rl_usu_inf_hab
+        fields = [
+            'id_hab',
+            'descripcion'
+        ]
+
+        labels = {
+            'id_hab' : 'Habilidad',
+            'descripcion': 'Descripcion',
+        }
+
+class frm_reg_usu_val_hab(forms.ModelForm):
+    #clase para la creación de un formulario de registro de información personal de usuario SIGEPI.
+    class Meta:
+        #Metadatos de la clase
+        model =  valid_hab
+        fields = [
+            'id_hab',
+            'id_usu_val',
+            'id_esc',
+            'val'
+
+        ]
+
+        labels = {
+            'id_hab' : 'Habilidad',
+            'id_usu_val': 'Identificador del Usuario que valida',
+            'id_esc' : 'Identificador de la escala de validación',
+            'val' : 'Valor dentro del rango',
         }

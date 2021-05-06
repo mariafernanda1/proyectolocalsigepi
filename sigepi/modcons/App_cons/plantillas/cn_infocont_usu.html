@@ -19,7 +19,8 @@
         <label> {{ usu_inf_contac.dir_offi}} </label><br>
 
             {% block modf_consl %}
-        <li><a href="{% url 'editarinf'  usu_inf_contac.id  %}" >seleccionar</a></li><br>
+        <li><a href="{% url 'editarinf'  usu_inf_contac.id  %}" >Editar</a></li><br>
+        <li><a href="{% url 'borrarinf'  usu_inf_contac.id  %}" >Eliminar</a></li><br>
             {% endblock modf_consl  %}
         {% endfor %}
 </form>

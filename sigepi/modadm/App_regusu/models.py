@@ -182,6 +182,14 @@ HORARIO = [
     (2,'8am 12pm - 2pm 6pm')
     ]
 
+#LIstado de  frecuencia
+FERC_RED_SOC = [
+    (0,'frecuente'),
+    (1,'moderado'),
+    (2,'poco frecuente'),
+    (3,'inactivo')
+    ]
+
 class usu_inf_apps(models.Model):
 
     id = models.AutoField(primary_key = True)
@@ -247,7 +255,7 @@ class usu_inf_pers(models.Model):
                 self.id_usu = user
             else:
                 self.id_usu = user
-            super(form_acad, self).save()
+            super(usu_inf_pers, self).save()
 
     def __str__(self):
         return '{}'.format(self.id_usu)
@@ -284,15 +292,25 @@ class usu_inf_contac(models.Model):
 class red_soc(models.Model):
 
     id_red = models.AutoField(primary_key = True)
-    nombre_red = models.CharField('Dirección de Oficina (país, ciudad, dir) ', max_length=30, null=False, blank = False)
-    usuario =  models.CharField('Direcció n de Oficina (país, ciudad, dir) ', max_length=20, null=False, blank = False)  #nick o dirección de usuario
+    id_usu = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null= True, blank=True)
+    nombre_red = models.CharField('Nombre de la red ', max_length=30, null=False, blank = False)
+    usuario =  models.CharField('nick o dirección de usuario', max_length=20, null=False, blank = False)  #nick o dirección de usuario
     url = models.URLField('Url de página principal dentro de la red.', null=False, blank=False) #Url de página principal dentro de la red.
-    uso = models.CharField('Uso de la red (frecuente:0; moderado:1; poco frecuente:2; inactivo:3) ', max_length=20, null=False, blank = False)  #Uso de la red (frecuente:0; moderado:1; poco frecuente:2; inactivo:3)
+    uso = models.IntegerField( choices = FERC_RED_SOC, default = 0, null=True, blank = True)
     pub = models.BooleanField('acceso público de información de red', default=False)  #Acceso público de información de red
 
     class Meta:
         verbose_name = 'red_soc'
         verbose_name_plural = 'red_socs'
+
+    def save(self,force_insert=False, force_update=False, using=None, update_fields=None):
+        user = get_current_user()
+        if user is not None:
+            if not self.pk:
+                self.id_usu = user
+            else:
+                self.id_usu = user
+            super(red_soc, self).save()
 
 class rl_usu_inf_red_social(models.Model): # relacion Listado de objetos de redes sociales
 
@@ -379,6 +397,18 @@ class curs_dict(models.Model):
         verbose_name = 'curs_dict'
         verbose_name_plural = 'curs_dicts'
 
+    def __str__(self):
+        return '{}'.format(self.id_usu)
+
+    def save(self,force_insert=False, force_update=False, using=None, update_fields=None):
+        user = get_current_user()
+        if user is not None:
+            if not self.pk:
+                self.id_usu = user
+            else:
+                self.id_usu = user
+            super(curs_dict, self).save()
+
 class rl_usu_inf_contac_curs_dict(models.Model):  # relacion de LIstado de id Cursos a cargo dictadospor al persona.
 
     id = models.AutoField(primary_key = True)
@@ -423,6 +453,15 @@ class empleos(models.Model):
         verbose_name = 'empleos'
         verbose_name_plural = 'empleoss'
 
+    def save(self,force_insert=False, force_update=False, using=None, update_fields=None):
+        user = get_current_user()
+        if user is not None:
+            if not self.pk:
+                self.id_usu = user
+            else:
+                self.id_usu = user
+            super(empleos, self).save()
+
 class habilidades(models.Model):
     #clase que almacena la información de tipos de habilidad
     id_hab = models.AutoField(primary_key = True)
@@ -433,30 +472,51 @@ class habilidades(models.Model):
         verbose_name = 'habilidades'
         verbose_name_plural = 'habilidadess'
 
+    def __str__(self):
+        return '{}'.format(self.nom_hab)
+
 class rl_usu_inf_hab(models.Model): # relacion de listado de id de habilidades registradas por le usuario
     # Clase que almacena la información de las habilidades o conocimientos adquiridos y certificados por el usuario
     id = models.AutoField(primary_key = True)
     id_usu=  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null= True, blank=True)  # identificador unico de usuario
-    ls_habs =  models.ForeignKey(habilidades, on_delete=models.CASCADE, null=False, blank =False)  # listado de id de habilidades registradas por le usuario
+    id_hab =  models.ForeignKey(habilidades, on_delete=models.CASCADE, null=False, blank =False)  # listado de id de habilidades registradas por le usuario
     descripcion = models.CharField('Descripción ', max_length=20, null=False, blank = False)  # descripcion del conocimiento o habilidad investigador
 
     class Meta:
         verbose_name = 'rl_usu_inf_hab'
         verbose_name_plural = 'rl_usu_inf_habs'
 
+    def save(self,force_insert=False, force_update=False, using=None, update_fields=None):
+        user = get_current_user()
+        if user is not None:
+            if not self.pk:
+                self.id_usu = user
+            else:
+                self.id_usu = user
+            super(rl_usu_inf_hab, self).save()
+
 class valid_hab(models.Model): # verificar esta
     #clase que procesa la información de validación social de habilidades
 #    id_usu = models.ForeignKey(usu, on_delete=models.CASCADE, null=False, blank =False) # Identificador del Usuario que registra la habilidad
     id = models.AutoField(primary_key = True)
+    id_usu =  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null= True, blank=True)
     id_hab = models.ForeignKey(habilidades, on_delete=models.CASCADE, null=False, blank =False) #Identificador de la habilidad que se va a validar
-    id_usu_val = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null= True, blank=True)  #Identificador del Usuario que valida la habilidad
+    id_usu_val = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null= True, blank=True, related_name='id_usu_val')  #Identificador del Usuario que valida la habilidad
     id_esc = models.CharField('IDENTIFICADOR ', max_length=20, null=False, blank = False) #Identificador de la escala de validación
     val = models.CharField('RANGO ', max_length=20, null=False, blank = False) #Valor dentro del rango de la escala de validación
 
-    #nota como realizp el dato val, id esc, id:usu_val
     class Meta:
         verbose_name = 'valid_hab'
         verbose_name_plural = 'valid_habs'
+
+    def save(self,force_insert=False, force_update=False, using=None, update_fields=None):
+        user = get_current_user()
+        if user is not None:
+            if not self.pk:
+                self.id_usu = user
+            else:
+                self.id_usu = user
+            super(valid_hab, self).save()
 
 class app_reg_usu(models.Model):
 

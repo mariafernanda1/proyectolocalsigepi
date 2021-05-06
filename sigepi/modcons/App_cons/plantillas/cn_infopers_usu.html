@@ -1,0 +1,32 @@
+{% extends 'index_usu_prb.html' %}
+{% block titulo %} lista de informacion personal del usuario {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de informacion personal del usuario no se ha logrado consultar.</p>
+{% endif %}
+<h3>Lista de informacion personal del usuario </h3>
+<form method="POST">
+    {{form.as_p}}
+    <div>
+        {% for usu_inf_pers in  info_pers %}
+        <label> {{ usu_inf_pers.nuip }} </label>
+        <label> {{ usu_inf_pers.tipo_nuip}} </label>
+        <label> {{ usu_inf_pers.nombres}} </label>
+        <label> {{ usu_inf_pers.apelllidos }} </label>
+        <label> {{ usu_inf_pers.nal}} </label>
+        <label> {{ usu_inf_pers.fch_naci }} </label>
+        <label> {{ usu_inf_pers.gene }} </label>
+        <label> {{ usu_inf_pers.ocup }} </label>
+        <label> {{ usu_inf_pers.dir }} </label>
+        <label> {{ usu_inf_pers.discap }} </label>
+        <label> {{ usu_inf_pers.tipo_discap }} </label>
+        <label> {{ usu_inf_pers.url_imag }} </label>
+        <label> {{ usu_inf_pers.zona_hor }} </label>
+
+            {% block modf_consl %}
+                <li><a href="{% url 'editar_infoper_usu'  usu_inf_pers.id  %}">Editar</a></li><br>
+                <li><a href="{% url 'borrarinfper'   usu_inf_pers.id   %}" >Eliminar</a></li><br>
+            {% endblock modf_consl  %}
+        {% endfor %}
+</form>
+{% endblock cuerpo %}

@@ -22,7 +22,8 @@
         <label> {{ form_acad.token}} </label>
 
             {% block modf_consl %}
-        <li><a href="{% url 'editarforaca'  form_acad.id_fa  %}" >seleccionar</a></li><br>
+        <li><a href="{% url 'editarforaca'  form_acad.id_fa  %}" >Editar</a></li><br>
+        <li><a href="{% url 'borrarformacad'  form_acad.id_fa  %}" >Eliminar</a></li><br>
             {% endblock modf_consl  %}
         {% endfor %}
 </form>

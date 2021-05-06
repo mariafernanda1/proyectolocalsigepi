@@ -1,0 +1,31 @@
+{% extends 'index_usu_prb.html' %}
+{% block titulo %} Listado empleo de usuario {% endblock titulo %}
+{% block cuerpo %}
+{% if form.errors %}
+    <p>La lista de empleos usuario no se ha logrado consultar.</p>
+{% endif %}
+<h3>Lista de empleos usuario </h3>
+<form method="POST">
+    {{form.as_p}}
+    <div>
+        {% for empleos in  empl_usu %}
+        <label> {{ empleos.instit }} </label>
+        <label> {{ empleos.nom_cargo}} </label>
+        <label> {{ empleos.fch_ini}} </label>
+        <label> {{ empleos.fch_fin }} </label>
+        <label> {{ empleos.certif}} </label>
+        <label> {{ empleos.nal }} </label>
+        <label> {{ empleos.ciudad }} </label>
+        <label> {{ empleos.tipo_contr}} </label>
+        <label> {{ empleos.tit }} </label>
+        <label> {{ empleos.menc}} </label>
+        <label> {{ empleos.token}} </label>
+        <label> {{ empleos.ret}} </label>
+
+            {% block modf_consl %}
+        <li><a href="{% url 'editarempleo'  empleos.id_empl  %}" >Editar</a></li><br>
+        <li><a href="{% url 'borrarempleo'  empleos.id_empl  %}" >Eliminar</a></li><br>
+            {% endblock modf_consl  %}
+        {% endfor %}
+</form>
+{% endblock cuerpo %}
