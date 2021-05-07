@@ -1,8 +1,7 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
-from django.contrib.auth.models import AbstractUser
+from registro.models import usu
 from crum import get_current_user
 from modadm.App_modadm.base_models import Basemodels
 
@@ -356,12 +355,13 @@ class rl_app_mod_func(models.Model): # relacion Listado de funciones propias del
         verbose_name_plural = 'rl_app_mod_funcs'
 
 #este usuario no se esta utilizando ojo...
+"""
 class User(AbstractUser):
 
 #    id_rol_sis = models.ForeignKey(rol, on_delete=models.CASCADE, null=True, blank =True)  # Identificador del  módulo# Identificador del Rol de Usuario de Sistema
     fch_regi = models.DateField('fecha de registro', auto_now = False,  null=True, blank =True) # fecha de registro de usurio
     activo = models.BooleanField('¿Activo o desactivado.?', default=False,  null=True, blank =True) # estatus del usuario activo (True) inactivo (False)
-
+"""
 
 class mod_adm(models.Model):
 # verificar inicio de sesion de django ojo, django todo
@@ -369,7 +369,7 @@ class mod_adm(models.Model):
     sesion = models.CharField('Sesion: ', max_length=150, null=True, blank = True)# # código o número de id_sesion
     #ls_sesion = [] # listado de sesiones activas
     #log_sesion = [] # listado del registro de sesiones
-    id_usu_adm = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank =False) # Id del usuario Super Administrador de la plataforma
+    #id_usu_adm = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank =False) # Id del usuario Super Administrador de la plataforma
     id_mod = models.ForeignKey(mod, on_delete=models.CASCADE, null=False, blank =False)
     # nota preguntar mod.__init__(self), donde tomo las sesiones activas etc
     class Meta:
@@ -381,7 +381,7 @@ class mod_adm(models.Model):
 class log_acc_mod(models.Model):
 
     id_log_acces = models.AutoField(primary_key = True)  # Identificador único de registro de acceso
-    id_usu = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank =False)  # Identificador único de usuario
+    #id_usu = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank =False)  # Identificador único de usuario
     id_mod = models.ForeignKey(mod, on_delete=models.CASCADE, null=False, blank =False)  # Identificador del  módulo
     fch_ini = models.DateField('fecha de inicio', auto_now = False)  # fecha de inicio formato AAAA-MM-DD-HH:MM
     fch_fin = models.DateField('fecha de fin', auto_now = False)  # fecha de finalización formato AAAA-MM-DD-HH:MM
@@ -393,7 +393,7 @@ class log_acc_mod(models.Model):
 class log_acc_pltf(models.Model):
 
     id_acc_pltf = models.AutoField(primary_key = True)  # Identificador único
-    id_usu = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank =False) # Identificador único de usuario
+    #id_usu = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank =False) # Identificador único de usuario
     fch_ini = models.DateField('fecha de inicio', auto_now = False) # fecha de inicio formato AAAA-MM-DD-HH:MM
     fch_fin = models.DateField('fecha de fin', auto_now = False) # fecha de finalización formato AAAA-MM-DD-HH:MM
 

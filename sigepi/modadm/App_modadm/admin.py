@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from .models import *
@@ -14,7 +13,6 @@ admin.site.register(func_app)
 admin.site.register(rl_func_app)
 admin.site.register(rl_mod_app_mod)
 admin.site.register(rl_app_mod_func)
-admin.site.register(User)
 admin.site.register(mod_adm)
 admin.site.register(log_acc_mod)
 admin.site.register(log_acc_pltf)

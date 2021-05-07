@@ -50,6 +50,7 @@ DJANGO_APPS = [
 
 # Aplicaciones de SIGEPI
 SIGEPI_APPS = [
+    'registro',
     'modadm.App_modadm', #Aplicación principal del módulo
     'modadm.App_regusu', #Aplicación de registro de usuario
     'modadm.App_regusui', #Aplicación de registro de usuario grupo
@@ -65,6 +66,7 @@ SIGEPI_APPS = [
     'modpry.App_evapry', #Aplicación de evaluación de proyectos de investigación
 #    'modpry.App_disinv' #Aplicación de diseño de proyectos de investigación
     'modcons.App_cons' #Aplicación de consultas general sigepi
+
 ]
 
 # Aplicaciones de terceros, exernas
@@ -172,7 +174,7 @@ STATICFILES_DIRS = [BASE_DIR/"static"]
 
 #variable para sustituir el usuario de django
 #modelo y tabla
-AUTH_USER_MODEL = 'App_modadm.User'
+AUTH_USER_MODEL = 'registro.usu'
 
 #LOGIN_REDIRECT_URL =  reverse_lazy('v_inicio')
 LOGIN_REDIRECT_URL =  'inicioprb'

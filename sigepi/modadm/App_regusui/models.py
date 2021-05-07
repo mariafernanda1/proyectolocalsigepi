@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import User
+from registro.models import usu
 from modadm.App_modadm.models import *
 from modadm.App_regusu.models import *
 from modadm.App_regusugr.models import *

@@ -1,18 +1,18 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User
 from django.views.generic import CreateView, DeleteView,ListView,UpdateView,View
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .form import *
 from django.http import HttpResponse
-from modadm.App_regusu.models import usu_inf_apps, User
+from modadm.App_regusu.models import usu_inf_apps
+from registro.models import usu
 from modadm.App_regusugr.models import usugr
 from modadm.App_regusui.models import usui
 from modadm.App_modadm.models import mod, app_mod
 
 class vts_ls_usu(ListView):
     # clase para listar usuarios del sistema
-    model = User
+    model = usu
     form_class = frm_con_usu
     template_name = 'cn_usu.html'
     success_url = reverse_lazy('cn_usu.html')
@@ -116,7 +116,7 @@ class ls_rol_usup(ListView):
 
 class mod_usu(UpdateView):
     #clase que me modifica usuarios del sistema
-    model = User
+    model = usu
     form_class = frm_con_usu
     template_name = 'sl_usu.html'
     success_url = reverse_lazy('mod_usu_prb.html')

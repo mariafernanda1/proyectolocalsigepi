@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import User
 from modadm.App_modadm.models import *
+from registro.models import usu
 
 
 ROL_APP_USU = [
